@@ -6,7 +6,7 @@ pipeline {
 
      stage("Docker build") {
                steps {
-                    sh "docker build -t isingh14/sample-html-page-kubernetes:${BUILD_TIMESTAMP} ."
+                    sh "docker build -t isingh14/my-web-html:${BUILD_TIMESTAMP} ."
                }
           }
 
@@ -21,7 +21,7 @@ pipeline {
 
           stage("Docker push") {
                steps {
-                    sh "docker push isingh14/sample-html-page-kubernetes:${BUILD_TIMESTAMP}"
+                    sh "docker push isingh14/my-web-html:${BUILD_TIMESTAMP}"
                }
           }
 
