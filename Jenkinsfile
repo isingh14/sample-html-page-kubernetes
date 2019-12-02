@@ -27,7 +27,7 @@ pipeline {
 
           stage("Update version") {
                steps {
-                    sh "sed  -i 's/{{VERSION}}/${BUILD_TIMESTAMP}/g' calculator.yaml"
+                    sh "sed  -i 's/{{VERSION}}/${BUILD_TIMESTAMP}/g' static-web-deployment.yaml"
                }
           }
           
@@ -36,6 +36,6 @@ pipeline {
                     sh "kubectl apply -f static-web-deployment.yaml"
                }
           }
-    }
+     }
 }
 
