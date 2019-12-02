@@ -3,8 +3,8 @@ pipeline {
      triggers {
           pollSCM('* * * * *')
      }
-
-     stage("Docker build") {
+     stages {
+     	  stage("Docker build") {
                steps {
                     sh "docker build -t isingh14/sample-html:${BUILD_TIMESTAMP} ."
                }
@@ -35,4 +35,7 @@ pipeline {
                steps {
                     sh "kubectl apply -f static-web-deployment.yaml"
                }
+          }
+    }
+}
 
