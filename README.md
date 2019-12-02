@@ -23,12 +23,17 @@
     kubelet and kube-proxy. If your kubernetes nodes are part of different subnet then you need to define 
     firewall rules and open the intended ports as mentioned in this document (https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/). Go to "Check required ports" section.
     
- * Create a namespace for Jenkins in the Kubernetes Cluster and run one copy of the Jenkins Docker Image. You can use the kubernetes deployment and service file given in this GIT repo (https://github.com/isingh14/jenkins-installation-kubernetes.git).
+ * Create a namespace for Jenkins in the Kubernetes Cluster and run one copy of the Jenkins Official Docker Image in the Cluster. You can use the kubernetes deployment and service file given in this GIT repo (https://github.com/isingh14/jenkins-installation-kubernetes.git).
  
- * This repository (https://github.com/isingh14/sample-html-page-kubernetes.git) holds all the required code files for building this website.
+ * Access Jenkins here http://<host_ip>:8080. This repository (https://github.com/isingh14/sample-html-page-kubernetes.git) holds all the required code files for building this website. Configure the pipeline job in Jenkins, putting the GIT repo
+ address in the "Pipeline from SCM".
+ 
+ * Files in this repo:
    * Index.html file
      * HTML Source code to be copied into the apache web server container.
    * Dockerfile
      * Provision Docker Image using Apache httpd 2.4 as the base image. Copy Index.html file into it.
    * Jenkinsfile
-     * CI Pipeline to build and push Docker Image into Docker Hub
+     * CI Pipeline to build and push Docker Image into Docker Hub and then run the deployment in the Kubernetes Cluster.
+   * Deployment.yaml file
+     * Kubernetes deployment of our website triggered from Jenkins peipeline. This file contains deployment strategy of our website e.g. replicas, label, container port, expose method etc.
