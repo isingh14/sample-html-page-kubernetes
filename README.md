@@ -25,7 +25,7 @@
     
  * Create a namespace for Jenkins in the Kubernetes Cluster and run one copy of the Jenkins Official Docker Image in the Cluster. You can use the kubernetes deployment and service file given in this GIT repo (https://github.com/isingh14/jenkins-installation-kubernetes.git).
  
- * Access Jenkins here http://<host_ip>:8080. This repository (https://github.com/isingh14/sample-html-page-kubernetes.git) holds all the required code files for building this website. Configure the pipeline job in Jenkins, putting the GIT repo
+ * Access Jenkins here http://<host_ip>:30000. This repository (https://github.com/isingh14/sample-html-page-kubernetes.git) holds all the required code files for building this website. Configure the pipeline job in Jenkins, putting the GIT repo
  address in the "Pipeline from SCM".
  
  * Files in this repo:
