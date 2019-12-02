@@ -12,6 +12,23 @@
 
 ## Procedure for website configuration and automatic deployment on Kubernetes
 
-    1. Provision 3 CentOS 7 AWS Virtual Machines. Configure appropriate network ACL rules for Public subnet as recommended on this AWS document - https://docs.aws.amazon.com/vpc/latest/userguide/vpc-recommended-nacl-rules.html
-    2. Configure automatic installation of Kubernetes Cluster with 1 Master and 2 Worker nodes with the use of Ansible playbooks. Details given in this public repository - https://github.com/isingh14/kubernetes-installation-ansible.git
-    __In my case, all kubernetes nodes belonged to the same subnet and I didn't configure firewall rules for communication between different Kubernetes resources e.g. api server, kube-scheduler, kube-controller, kubelet and kube-proxy. If your kubernetes nodes are part of different subnet then you need to define firewall rules and open the intended ports as mentioned in this document - 
+   * Provision 3 CentOS-7 AWS Virtual Machines. Configure appropriate network ACL rules for Public 
+   subnet as recommended on this AWS document (https://docs.aws.amazon.com/vpc/latest/userguide/vpc-recommended-nacl-rules.html)
+    
+   * Configure automatic installation of Kubernetes Cluster with 1 Master and 2 Worker nodes with the 
+   use of Ansible playbooks. Details given in this public repository (https://github.com/isingh14/kubernetes-installation-ansible.git)
+    
+     * In my case, all kubernetes nodes belonged to the same subnet and I didn't configure firewall rules 
+    for communication between different Kubernetes resources e.g. api server, kube-scheduler, kube-controller, 
+    kubelet and kube-proxy. If your kubernetes nodes are part of different subnet then you need to define 
+    firewall rules and open the intended ports as mentioned in this document (https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/). Go to "Check required ports" section.
+    
+ * Create a namespace for Jenkins in the Kubernetes Cluster and run one copy of the Jenkins Docker Image. You can use the kubernetes deployment and service file given in this GIT repo (https://github.com/isingh14/jenkins-installation-kubernetes.git).
+ 
+ * This repository (https://github.com/isingh14/sample-html-page-kubernetes.git) holds all the required code files for building this website.
+   * Index.html file
+     * HTML Source code to be copied into the apache web server container.
+   * Dockerfile
+     * Provision Docker Image using Apache httpd 2.4 as the base image. Copy Index.html file into it.
+   * Jenkinsfile
+     * CI Pipeline to build and push Docker Image into Docker Hub
