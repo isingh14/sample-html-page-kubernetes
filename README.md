@@ -37,3 +37,5 @@
      * CI Pipeline to build and push Docker Image into Docker Hub and then run the deployment in the Kubernetes Cluster.
    * Deployment.yaml file
      * Kubernetes deployment of our website triggered from Jenkins peipeline. This file contains deployment strategy of our website e.g. replicas, label, container port, expose method etc.
+     
+ * Whenever new code is committed to the GIT master repo, it will automatically trigger the pipeline in Jenkins for the new deployment of our website.
